@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Primary Meta Tags -->
+    <title>How Well do Feature Visualizations Support Causal Understanding of CNN Activations?</title>
+    <meta name="title" content="How Well do Feature Visualizations Support Causal Understanding of CNN Activations?">
+    <meta name="description"
+        content="One widely used approach towards understanding the inner workings of deep convolutional neural networks is to visualize unit responses via activation maximization. Feature visualizations via activation maximization are thought to provide humans with precise information about the image features that cause a unit to be activated. If this is indeed true, these synthetic images should enable humans to predict the effect of an intervention, such as whether occluding a certain patch of the image (say, a dog's head) changes a unit's activation. Here, we test this hypothesis by asking humans to predict which of two square occlusions causes a larger change to a unit's activation. Both a large-scale crowdsourced experiment and measurements with experts show that on average, the extremely activating feature visualizations by Olah et al. (2017) indeed help humans on this task (67 ± 4% accuracy; baseline performance without any visualizations is 60 ± 3%). However, they do not provide any significant advantage over other visualizations (such as e.g. dataset samples), which yield similar performance (66 ± 3% to 67 ± 3% accuracy). Taken together, we propose an objective psychophysical task to quantify the benefit of unit-level interpretability methods for humans, and find no evidence that feature visualizations provide humans with better &ldquo;causal understanding&rdquo; than simple alternative visualizations.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://brendel-group.github.io/causal-understanding-via-visualizations/">
+    <meta property="og:title" content="How Well do Feature Visualizations Support Causal Understanding of CNN Activations?">
+    <meta property="og:description"
+        content="One widely used approach towards understanding the inner workings of deep convolutional neural networks is to visualize unit responses via activation maximization. Feature visualizations via activation maximization are thought to provide humans with precise information about the image features that cause a unit to be activated. If this is indeed true, these synthetic images should enable humans to predict the effect of an intervention, such as whether occluding a certain patch of the image (say, a dog's head) changes a unit's activation. Here, we test this hypothesis by asking humans to predict which of two square occlusions causes a larger change to a unit's activation. Both a large-scale crowdsourced experiment and measurements with experts show that on average, the extremely activating feature visualizations by Olah et al. (2017) indeed help humans on this task (67 ± 4% accuracy; baseline performance without any visualizations is 60 ± 3%). However, they do not provide any significant advantage over other visualizations (such as e.g. dataset samples), which yield similar performance (66 ± 3% to 67 ± 3% accuracy). Taken together, we propose an objective psychophysical task to quantify the benefit of unit-level interpretability methods for humans, and find no evidence that feature visualizations provide humans with better &ldquo;causal understanding&rdquo; than simple alternative visualizations.">
+    <meta property="og:image" content="https://bethgelab.github.io/testing_visualizations/img/overview.svg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://brendel-group.github.io/causal-understanding-via-visualizations/">
+    <meta property="twitter:title" content="How Well do Feature Visualizations Support Causal Understanding of CNN Activations?">
+    <meta property="twitter:description"
+        content="One widely used approach towards understanding the inner workings of deep convolutional neural networks is to visualize unit responses via activation maximization. Feature visualizations via activation maximization are thought to provide humans with precise information about the image features that cause a unit to be activated. If this is indeed true, these synthetic images should enable humans to predict the effect of an intervention, such as whether occluding a certain patch of the image (say, a dog's head) changes a unit's activation. Here, we test this hypothesis by asking humans to predict which of two square occlusions causes a larger change to a unit's activation. Both a large-scale crowdsourced experiment and measurements with experts show that on average, the extremely activating feature visualizations by Olah et al. (2017) indeed help humans on this task (67 ± 4% accuracy; baseline performance without any visualizations is 60 ± 3%). However, they do not provide any significant advantage over other visualizations (such as e.g. dataset samples), which yield similar performance (66 ± 3% to 67 ± 3% accuracy). Taken together, we propose an objective psychophysical task to quantify the benefit of unit-level interpretability methods for humans, and find no evidence that feature visualizations provide humans with better &ldquo;causal understanding&rdquo; than simple alternative visualizations.">
+    <meta property="twitter:image" content="">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+    <style>
+        .main {
+            font-family: 'IBM Plex Sans Condensed', sans-serif;
+        }
+
+        .code {
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .row {
+            padding-bottom: 20px;
+        }
+
+        .a {
+            color: gainsboro;
+            font-family: 'IBM Plex Sans Condensed', sans-serif;
+        }
+
+        td {
+            padding: 0 15px;
+        }
+
+        p {
+            text-align: justify;
+
+        }
+
+        .collapse-container {
+            text-align: center;
+            position: relative;
+
+        }
+
+        .collapse-container #moreless.collapsed:after {
+            content: '+ Show More';
+        }
+
+        .collapse-container #moreless:not(.collapsed):after {
+            content: '- Show Less';
+        }
+
+        .collapse-container .collapse.collapse:not(.show) {
+            display: block;
+            /* height = lineheight * no of lines to display */
+            height: 5.7em;
+            overflow: hidden;
+        }
+
+        .collapse-container .collapse.collapse:not(.show):before {
+            content: '';
+            width: 100%;
+            height: 5.7em;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: linear-gradient(rgba(255, 255, 255, 0), 20px, white);
+        }
+
+        .collapse-container .collapse.collapsing {
+            height: 5.7em;
+        }
+    </style>
+
+    <title>How Well do Feature Visualizations Support Causal Understanding of CNN Activations?</title>
+</head>
+
+<body>
+    <div class="container main">
+        <div class="row">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-8" id="main-content">
+                <div class="row text-center my-5" id="#">
+                    <h1>How Well do Feature Visualizations Support Causal Understanding of CNN Activations?</h1>
+                </div>
+
+                <div class="row text-center">
+                    <p>
+                        <span class="text-muted">
+                            Coming soon.
+                        </span>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
