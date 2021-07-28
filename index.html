@@ -54,6 +54,10 @@
             padding-bottom: 20px;
         }
 
+        .row-dense {
+            padding-bottom: 0;
+        }
+
         .a {
             color: gainsboro;
             font-family: 'IBM Plex Sans Condensed', sans-serif;
@@ -85,22 +89,22 @@
         .collapse-container .collapse.collapse:not(.show) {
             display: block;
             /* height = lineheight * no of lines to display */
-            height: 5.7em;
+            height: 7.7em;
             overflow: hidden;
         }
 
         .collapse-container .collapse.collapse:not(.show):before {
             content: '';
             width: 100%;
-            height: 5.7em;
+            height: 7.7em;
             position: absolute;
             left: 0;
             top: 0;
-            background: linear-gradient(rgba(255, 255, 255, 0), 20px, white);
+            background: linear-gradient(rgba(255, 255, 255, 0), 60px, white);
         }
 
         .collapse-container .collapse.collapsing {
-            height: 5.7em;
+            height: 7.7em;
         }
     </style>
 
@@ -117,12 +121,299 @@
                     <h1>How Well do Feature Visualizations Support Causal Understanding of CNN Activations?</h1>
                 </div>
 
+                <!-- Begin author list-->
+                <div class="row text-center mb-4">
+                    <div class="col-sm-4 mb-4">
+                        Roland S. Zimmermann*
+                        <a href="mailto:roland.zimmermann@uni-tuebingen.de"><i class="far fa-envelope"></i></a>
+                        <a href="https://rzimmermann.com" target="_blank"><i class="fas fa-link"></i></a></br>
+                        University of Tübingen & <nobr>IMPRS-IS</nobr>
+                    </div>
+                    <div class="col-sm-4 mb-4">
+                        Judy Borowski*
+                        <a href="mailto:judy.borowski@uni-tuebingen.de"><i class="far fa-envelope"></i></a></br>
+                        University of Tübingen & <nobr>IMPRS-IS</nobr>
+                    </div>
+                    <div class="col-sm-4 mb-4">
+                        Robert Geirhos
+                         <a href="https://robertgeirhos.com/" target="_blank"><i class="fas fa-link"></i></a></br>
+                        University of Tübingen & <nobr>IMPRS-IS</nobr>
+                    </div>
+                    <div class="col-sm-4 mb-4">
+                        Matthias Bethge<sup>&dagger;</sup>
+                        <a href="http://bethgelab.org/people" target="_blank"><i class="fas fa-link"></i></a><br>
+                        University of Tübingen
+                    </div>
+                    <div class="col-sm-4 mb-4">
+                        Thomas S. A. Wallis<sup>&dagger;</sup></br>
+                        Technical University of Darmstadt
+                    </div>
+                    <div class="col-sm-4 mb-4">
+                        Wieland Brendel<sup>&dagger;</sup><br>
+                        University of Tübingen
+                    </div>
+                </div>
+                <!-- End author list-->
+
+                <div class="row text-center">
+                    <div class="col-sm-4 mb-4">
+                        <h4>
+                            <a href="https://arxiv.org/abs/2106.12447" target="_blank">
+                                <i class="fas fa-file-alt"></i>
+                                Paper
+                            </a>
+                        </h4>
+                    </div>
+                    <div class="col-sm-4 mb-4">
+                        <h4>
+                            <a href="#" target="_blank">
+                                <i class="far fa-chart-bar"></i>
+                                Data (soon)
+                            </a>
+                        </h4>
+                    </div>
+                    <div class="col-sm-4 mb-4">
+                        <h4>
+                            <a href="https://github.com/brendel-group/causal-understanding-via-visualizations" target="_blank">
+                                <i class="fab fa-github"></i>
+                                Code
+                            </a>
+                        </h4>
+                    </div>
+                </div>
+
                 <div class="row text-center">
                     <p>
+                        <b>tl;dr:</b>
                         <span class="text-muted">
-                            Coming soon.
+                            Using psychophysical experiments, we show that widely used synthetic feature visualizations by <a href="#" data-toggle="tooltip" title data-original-title="Olah, Chris, Alexander Mordvintsev, and Ludwig Schubert. &quot; Feature visualization.&quot; Distill 2.11 (2017): e7.
+                            ">Olah et al. (2017)</a> do not support causal understanding much better than no visualizations, and only similarly well as other visualizations like natural dataset samples. 
                         </span>
                     </p>
+                </div>
+
+                <div class="row mt-2">
+                    <h3>News</h3>
+                </div>
+
+                <div class="row">
+                    <table>
+                        <tr>
+                            <td>
+                                <span class="badge badge-pill badge-primary">July '21</span>
+                            </td>
+                            <td>
+                                We really enjoyed discussing this project with visitors at the ICML XAI workshop.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="badge badge-pill badge-primary">June '21</span>
+                            </td>
+                            <td>
+                                A shorter <a
+                                    href="https://arxiv.org/abs/2106.12447">workshop version</a> of the paper was accepted at the <a href="https://icml2021-xai.github.io/"
+                                    target="_blank">Theoretic Foundation, Criticism, and Application Trend of Explainable AI Workshop at ICML 2021</a>.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="mr-10">
+                                <span class="badge badge-pill badge-primary">June '21</span>
+                            </td>
+                            <td>
+                                The pre-print is now available on <a href="https://arxiv.org/abs/2106.12447">arXiv</a>.
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <p>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <h3>Abstract</h3>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12 collapse-container">
+                        <p class="collapse" id="abstractText" aria-expanded="false">
+                            One widely used approach towards understanding the inner workings of deep convolutional neural networks is to visualize unit responses via activation maximization. Feature visualizations via activation maximization are thought to provide humans with precise information about the image features that cause a unit to be activated. If this is indeed true, these synthetic images should enable humans to predict the effect of an intervention, such as whether occluding a certain patch of the image (say, a dog's head) changes a unit's activation. Here, we test this hypothesis by asking humans to predict which of two square occlusions causes a larger change to a unit's activation. Both a large-scale crowdsourced experiment and measurements with experts show that on average, the extremely activating feature visualizations by <a href="#" data-toggle="tooltip" title data-original-title="Olah, Chris, Alexander Mordvintsev, and Ludwig Schubert. &quot; Feature visualization.&quot; Distill 2.11 (2017): e7.
+                            ">Olah et al. (2017)</a> indeed help humans on this task (67 ± 4% accuracy; baseline performance without any visualizations is 60 ± 3%). However, they do not provide any significant advantage over other visualizations (such as e.g. dataset samples), which yield similar performance (66 ± 3% to 67 ± 3% accuracy). Taken together, we propose an objective psychophysical task to quantify the benefit of unit-level interpretability methods for humans, and find no evidence that feature visualizations provide humans with better &ldquo;causal understanding&rdquo; than simple alternative visualizations.
+                        </p>
+                       <a role="button" id="moreless" class="collapsed" data-toggle="collapse" href="#abstractText" aria-expanded="false" aria-controls="abstractText"></a>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <div style="text-align: center;">
+                            <img src="img/Figure_1.svg" style="width: 400px;" />
+                        </div>
+                        <small class="text-muted">
+                            How useful are synthetic feature visualizations to interpret the effects of interventions? Given strongly activating reference images (either <span style="color: #397ba3;">synthetic</span> or <span style="color: #ffab74;">natural</span>), a human participant chooses which out of two manipulated images activates a unit more. Note that the presented trial is made up - real trials are often more difficult. Synthetic images are generated via feature visualization (<a href="#" data-toggle="tooltip" title data-original-title="Olah, Chris, Alexander Mordvintsev, and Ludwig Schubert. &quot; Feature visualization.&quot; Distill 2.11 (2017): e7.
+                            ">Olah et al. (2017)</a>).
+                        </small>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <h3>Why we care</h3>
+                </div>
+                <div class="row mt-2 row-dense">
+                    <div class="col-12">
+                        <p>
+                            Feature visualizations via activation maximization are a popular explanation method for CNNs. They are believed to provide humans with precise information about the image features that cause a unit to be activated. A popular example is that they can distinguish whether a unit responds to a whole dog’s face or just an eye:
+                        </p>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div style="text-align: center;">
+                        <img src="img/Figure_2.svg" style="width: 200px;" />
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <p>
+                            In this project, we test this intuition and investigate how well feature visualizations support causal understanding of CNN activations. Our assumption is that if these visualizations grant more causal insight, then they should allow humans to predict the effect of an intervention better.
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="row mt-2">
+                    <h3>What we did</h3>
+                </div>
+                <div class="row mt-2 row-dense">
+                    <div class="col-12">
+                        <p>
+                            In online experiments on Amazon Mechanical Turk (MTurk), we test how well participants understand the causal relation between manipulated images and a CNN unit’s activation. Here is an example trial:
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div style="text-align: center;">
+                        <img src="img/Figure_3.svg" style="width: 500px;" />
+                    </div>
+                    <small class="text-muted">
+                        Based on strongly activating reference images on the left, a participant chooses which manipulated image on the right elicits higher activation.
+                    </small>
+                </div>
+
+
+                <div class="row mt-2 row-dense">
+                    <div class="col-12">
+                        <p>
+                            For a certain CNN unit, participants see several strongly activating feature visualizations on the left. On the right hand side, they see yet another strongly activating image - this time, though, a natural one. Below this natural image, two copies with square occlusions at different locations are shown. The question is: Which of these two manipulated images elicits higher activation? When we break this task down, what we’re really asking is which of the manipulated images contains as much content as possible of whatever seems important given the reference images.
+                        </p>
+                        <p>
+                            Moreover, we compare feature visualizations with other visualization. For example, we test strongly activating dataset samples from ImageNet. This is what the trial looks like then:
+                        </p>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div style="text-align: center;">
+                        <img src="img/Figure_4.svg" style="width: 500px;" />
+                    </div>
+                    <br>
+                </div>
+
+                <div class="row mt-2">
+                    <h3>What we found</h3>
+                </div>
+
+                <div class="row mt-2 row-dense">
+                    <div class="col-12">
+                        <p>
+                            Our main finding is that feature visualizations do not support causal understanding particularly well. With 67%, performance is above chance level for these synthetic images, which suggests that feature visualizations do provide some helpful information about the most important image patch. However, this performance is only slightly higher than when participants make their choices without any reference images (&ldquo;None&rdquo;). Finally, natural dataset samples as well as other combinations and types of visualizations are similarly helpful.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div style="text-align: center;">
+                        <img src="img/Figure_5.svg" style="width: 325px;" />
+                    </div>
+                    <small class="text-muted">
+                        On average, humans reach the same performance regime with any visualization method. This holds for both lay participants on MTurk (dark colors) as well as for expert measurements (light colors).
+                    </small>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <p>
+                            As performances between conditions are very similar, we thoroughly investigate whether participants really understand the task and try their best. The good news is: We are confident that that is the case. While we describe five reasons for this in our paper, we only want to mention the most intuitive one here (see the paper for the other reasons, as well as more analyses): Measurements of the two first authors are similar to those of online participants - and we certainly engaged during this experiment ;-)
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <h3>What we take from this</h3>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <p>
+                            In summary, we showed that the widely used visualization method by <a href="#" data-toggle="tooltip" title data-original-title="Olah, Chris, Alexander Mordvintsev, and Ludwig Schubert. &quot; Feature visualization.&quot; Distill 2.11 (2017): e7.
+                            ">Olah et al. (2017)</a> does not convey causal understanding of CNN activations as well as previously thought. It is out of doubt that feature visualizations have an important place within the field of interpretability and that with more and more societal applications of machine learning, this method will become even more used. Therefore, developing realistic expectations of what we can - and what we cannot - expect from explanation methods is crucial. We hope that our task will serve as a challenging test case to steer further development of visualization methods.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h3>Acknowledgements & Funding</h3>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12 collapse-container">
+                        <p class="collapse" id="acknowledgmentsText" aria-expanded="false">
+                            We thank the reviewers and commenters (e.g. Chris Olah) on our <a href="https://openreview.net/forum?id=QO9-y8also-" target="_blank">previous paper to stimulate this further work. We thank Felix A. Wichmann and Isabel Valera for a helpful discussion. We further thank Ludwig Schubert for information on technical details via <a href="http://slack.distill.pub">slack</a>. In addition, we thank our colleagues for helpful discussions, and especially Matthias Kümmerer, Dylan Paiton, Wolfram Barfuss, and Matthias Tangemann for valuable feedback on our task, and/or technical support. And finally, we thank all our participants for taking part in our experiments.<br>
+
+                            We thank the <a href="https://imprs.is.mpg.de/" target="_blank">International Max Planck Research School for Intelligent Systems (IMPRS-IS)</a> for supporting JB, RZ and RG.
+                            We acknowledge support from the German Federal Ministry of Education and Research (BMBF)
+                            through the <a href="https://tuebingen.ai" target="_blank">Competence Center for Machine
+                            Learning (TUE.AI, FKZ 01IS18039A)</a> and the <a
+                            href="https://www.bccn-tuebingen.de/research/" target="_blank">Bernstein Computational
+                            Neuroscience Program Tübingen (FKZ: 01GQ1002)</a>, the Cluster of Excellence Machine Learning: New Perspectives for Sciences (EXC2064/1), and the German Research Foundation (DFG; <a href="https://uni-tuebingen.de/forschung/forschungsschwerpunkte/sonderforschungsbereiche/sfb-1233/" target="_blank">SFB 1233, Robust Vision: Inference Principles and Neural Mechanisms, TP3, project number 276693517)</a>.
+                            MB and WB acknowledge funding from the MICrONS program of the Intelligence Advanced Research Projects Activity (IARPA) via Department of Interior/Interior Business Center (DoI/IBC) contract number D16PC00003.
+                        </p>
+                       <a role="button" id="moreless" class="collapsed" data-toggle="collapse" href="#acknowledgmentsText" aria-expanded="false" aria-controls="acknowledgmentsText"></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <h3>BibTeX</h3>
+                </div>
+                <div class="row">
+                    <p>When citing our project, please use our pre-print:</p>
+                </div>
+                <div class="row justify-content-md-center">
+                    <div class="col-sm-8 rounded p-3 m-2" style="background-color:lightgray;">
+                        <small class="code">
+                            @article{zimmermann2021causal,<br>
+                            &nbsp;&nbsp;author = { <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Zimmermann, Roland S. and<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Borowski, Judy and<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Geirhos, Robert and<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Bethge, Matthias and<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Wallis, Thomas S. A., and<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Brendel, Wieland<br>
+                            &nbsp;&nbsp;},<br>
+                            &nbsp;&nbsp;title = {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;How Well do Feature Visualizations<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Support Causal Understanding<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;of CNN Activations?<br>
+                            &nbsp;&nbsp;},<br>
+                            &nbsp;&nbsp;journal = {CoRR},<br>
+                            &nbsp;&nbsp;volume = {abs/2106.12447},<br>
+                            &nbsp;&nbsp;year = {2021},<br>
+                            }
+                        </small>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <small class="text-muted">Webpage designed using Bootstrap 4.5.</small>
+                    <a href="#" class="ml-auto"><i class="fas fa-sort-up"></i></a>
                 </div>
 
             </div>
@@ -130,6 +421,26 @@
 
     </div>
 
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+
 </body>
+
+</html>
 
 </html>
