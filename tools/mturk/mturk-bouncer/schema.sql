@@ -1,0 +1,1 @@
+CREATE TABLE workers (worker_id TEXT, task_namespace TEXT, experiment_id TEXT, datetime_added DATETIME DEFAULT CURRENT_TIMESTAMP);

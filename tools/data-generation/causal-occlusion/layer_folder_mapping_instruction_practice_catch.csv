@@ -1,0 +1,16 @@
+encoding in folder structure - correspondence in InceptionV1
+layer_number,kernel_size_number,channel_number,layer_name,pre_post_relu,kernel_size,feature_map_number
+a,a,a,mixed5a,pre_relu,pool,720
+j,j,j,mixed4e,pre_relu,pool,783
+t,t,t,mixed4c,pre_relu,pool,484
+z,z,z,mixed5a,pre_relu,3x3,557
+g,g,g,mixed4e,pre_relu,1x1,6
+o,o,o,mixed4a,pre_relu,pool,505
+d,d,d,mixed4e,pre_relu,pool,809
+c,c,c,mixed4c,pre_relu,pool,449
+e,e,e,mixed4b,pre_relu,pool,465
+f,f,f,mixed4c,pre_relu,1x1,59
+h,h,h,mixed4e,pre_relu,1x1,83
+k,k,k,mixed3a,pre_relu,1x1,43
+n,n,n,mixed3b,pre_relu,pool,472
+q,q,q,mixed4b,pre_relu,1x1,5

@@ -1,0 +1,188 @@
+.jspsych-cf-image-confidence-reference-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 224px);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  justify-content: center;
+  margin: auto;
+}
+
+.jspsych-cf-image-confidence-container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  align-items: center;
+}
+
+.jspsych-cf-image-confidence-container > p {
+  align-self: baseline;
+}
+
+.jspsych-cf-image-confidence-query-choice-container {
+  margin: 20px 0 0 0;
+  grid-column: 5;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.jspsych-cf-image-confidence-query-choice-container > div {
+  display: flex;
+  flex-direction: row;
+}
+
+.jspsych-cf-image-confidence-query-choice-container > div > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.jspsych-cf-image-confidence-query-choice-container > div > div:nth-of-type(1) {
+  margin-right: 5px;
+}
+
+.jspsych-cf-image-confidence-query-choice-container > div > div:nth-of-type(2) {
+  margin-left: 5px;
+}
+
+.jspsych-cf-image-confidence-query-choice-container > p {
+  margin-bottom: 0;
+}
+
+.jspsych-cf-image-confidence-choice-grid {
+  display: inline-grid;
+  grid-row-gap: 10px;
+  margin: 5px 0 5px 0;
+  width: 100%;
+  max-width: 224px;
+  align-self: center;
+}
+
+.jspsych-cf-image-confidence-reference-container {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.jspsych-cf-image-confidence-base-query-container {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.jspsych-cf-image-confidence-left-container
+  .jspsych-cf-image-confidence-reference-grid {
+  justify-content: right;
+}
+
+.jspsych-cf-image-confidence-right-container
+  .jspsych-cf-image-confidence-reference-grid {
+  justify-content: left;
+}
+
+.jspsych-cf-image-confidence-choice-hint {
+  grid-column-start: 1;
+  grid-column-end: 7;
+  text-align: center;
+  grid-row: 2;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 40px;
+  width: 100%;
+}
+
+p {
+  margin-bottom: 5px;
+}
+
+.jspsych-cf-image-confidence-choice-hint > div > p {
+  position: absolute;
+  color: black;
+  width: 100%;
+  margin-top: 7px;
+}
+
+.jspsych-cf-image-confidence-query-container {
+  grid-column: 3;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.arrow-right {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr auto;
+  position: absolute;
+}
+
+.arrow-right div:nth-child(1) {
+  margin-top: 8px;
+  background: lightgray;
+  height: 25px;
+  float: left;
+}
+
+.arrow-right div:nth-child(2) {
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 20px solid lightgray;
+  float: right;
+}
+
+.arrow-left {
+  display: grid;
+  width: 100%;
+  grid-template-columns: auto 1fr;
+  position: absolute;
+}
+
+.arrow-left div:nth-child(2) {
+  margin-top: 8px;
+  background: lightgray;
+  height: 25px;
+  float: right;
+}
+
+.arrow-left div:nth-child(1) {
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-right: 20px solid lightgray;
+  float: left;
+}
+
+.jspsych-cf-image-confidence-query {
+  padding: 5px;
+  margin: 0 -5px;
+  background-color: transparent;
+  border: 5px solid rgb(116, 116, 116);
+}
+
+.jspsych-cf-image-confidence-query-responded {
+  background-color: black;
+}
+
+.jspsych-cf-image-confidence-query-correct {
+  /* border: 5px solid green;
+    padding: 5px; */
+}
+
+.jspsych-cf-image-stimulus {
+  width: 100%;
+  /*TODO: make variable */
+  max-width: 224px;
+}
+
+#jspsych-instructions-image {
+  max-width: 1261px;
+  width: 60%;
+  margin: 25px 0;
+  padding: 10px;
+  border: solid black 2px;
+}
+
+#jspsych-loading-progress-bar {
+  background: #333 !important;
+}

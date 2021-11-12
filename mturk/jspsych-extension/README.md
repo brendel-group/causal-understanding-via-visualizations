@@ -1,0 +1,1 @@
+Newly implemented trial types necessary for the experiments which were not yet included in jspsych are stored here.

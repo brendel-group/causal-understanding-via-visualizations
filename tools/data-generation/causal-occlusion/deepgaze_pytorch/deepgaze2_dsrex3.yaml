@@ -1,0 +1,272 @@
+- downscale_factor: 2
+  features:
+    features1:
+      params: &id001 {}
+      type: deepgaze_pytorch.features.shapenet.RGBShapeNetC
+      used_features:
+      - 1.module.layer3.0.conv2
+      - 1.module.layer3.3.conv2
+      - 1.module.layer3.5.conv1
+      - 1.module.layer3.5.conv2
+      - 1.module.layer4.1.conv2
+      - 1.module.layer4.2.conv2
+  fixated_scopes: &id002 []
+  fixation_selection_network:
+    input_channels:
+    - 1
+    - 0
+    layers:
+    - activation_fn: softplus
+      activation_scope: null
+      batch_norm: false
+      bias: true
+      channels: 128
+      layer_norm: true
+      name: conv1
+    - activation_fn: softplus
+      activation_scope: null
+      batch_norm: false
+      bias: true
+      channels: 16
+      layer_norm: true
+      name: conv2
+    - activation_fn: null
+      activation_scope: null
+      batch_norm: false
+      bias: false
+      channels: 1
+      layer_norm: false
+      name: conv3
+  include_previous_x: true
+  include_previous_y: true
+  included_durations: []
+  included_previous_fixations: []
+  readout_factor: 16
+  saliency_map_factor: 2
+  saliency_network:
+    input_channels: 2048
+    layers:
+    - activation_fn: softplus
+      activation_scope: null
+      batch_norm: false
+      bias: true
+      channels: 8
+      layer_norm: true
+      name: conv1
+    - activation_fn: softplus
+      activation_scope: null
+      batch_norm: false
+      bias: true
+      channels: 16
+      layer_norm: true
+      name: conv2
+    - activation_fn: softplus
+      activation_scope: null
+      batch_norm: false
+      bias: true
+      channels: 1
+      layer_norm: true
+      name: conv3
+  scanpath_network: null
+- downscale_factor: 2
+  features:
+    features1:
+      params: *id001
+      type: deepgaze_pytorch.features.efficientnet.RGBEfficientNetB5
+      used_features:
+      - 1._blocks.24._depthwise_conv
+      - 1._blocks.26._depthwise_conv
+      - 1._blocks.35._project_conv
+  fixated_scopes: *id002
+  fixation_selection_network:
+    input_channels:
+    - 1
+    - 0
+    layers:
+    - activation_fn: softplus
+      activation_scope: null
+      batch_norm: false
+      bias: true
+      channels: 128
+      layer_norm: true
+      name: conv1
+    - activation_fn: softplus
+      activation_scope: null
+      batch_norm: false
+      bias: true
+      channels: 16
+      layer_norm: true
+      name: conv2
+    - activation_fn: null
+      activation_scope: null
+      batch_norm: false
+      bias: false
+      channels: 1
+      layer_norm: false
+      name: conv3
+  include_previous_x: true
+  include_previous_y: true
+  included_durations: []
+  included_previous_fixations: []
+  readout_factor: 16
+  saliency_map_factor: 2
+  saliency_network:
+    input_channels: 2416
+    layers:
+    - activation_fn: softplus
+      activation_scope: null
+      batch_norm: false
+      bias: true
+      channels: 8
+      layer_norm: true
+      name: conv1
+    - activation_fn: softplus
+      activation_scope: null
+      batch_norm: false
+      bias: true
+      channels: 16
+      layer_norm: true
+      name: conv2
+    - activation_fn: softplus
+      activation_scope: null
+      batch_norm: false
+      bias: true
+      channels: 1
+      layer_norm: true
+      name: conv3
+  scanpath_network: null
+- downscale_factor: 2
+  features:
+    features1:
+      params: *id001
+      type: deepgaze_pytorch.features.densenet.RGBDenseNet201
+      used_features:
+      - 1.features.denseblock4.denselayer32.norm1
+      - 1.features.denseblock4.denselayer32.conv1
+      - 1.features.denseblock4.denselayer31.conv2
+  fixated_scopes: *id002
+  fixation_selection_network:
+    input_channels:
+    - 1
+    - 0
+    layers:
+    - activation_fn: softplus
+      activation_scope: null
+      batch_norm: false
+      bias: true
+      channels: 128
+      layer_norm: true
+      name: conv1
+    - activation_fn: softplus
+      activation_scope: null
+      batch_norm: false
+      bias: true
+      channels: 16
+      layer_norm: true
+      name: conv2
+    - activation_fn: null
+      activation_scope: null
+      batch_norm: false
+      bias: false
+      channels: 1
+      layer_norm: false
+      name: conv3
+  include_previous_x: true
+  include_previous_y: true
+  included_durations: []
+  included_previous_fixations: []
+  readout_factor: 16
+  saliency_map_factor: 2
+  saliency_network:
+    input_channels: 2048
+    layers:
+    - activation_fn: softplus
+      activation_scope: null
+      batch_norm: false
+      bias: true
+      channels: 8
+      layer_norm: true
+      name: conv1
+    - activation_fn: softplus
+      activation_scope: null
+      batch_norm: false
+      bias: true
+      channels: 16
+      layer_norm: true
+      name: conv2
+    - activation_fn: softplus
+      activation_scope: null
+      batch_norm: false
+      bias: true
+      channels: 1
+      layer_norm: true
+      name: conv3
+  scanpath_network: null
+- downscale_factor: 2
+  features:
+    features1:
+      params: *id001
+      type: deepgaze_pytorch.features.resnext.RGBResNext50
+      used_features:
+      - 1.layer3.5.conv1
+      - 1.layer3.5.conv2
+      - 1.layer3.4.conv2
+      - 1.layer4.2.conv2
+  fixated_scopes: *id002
+  fixation_selection_network:
+    input_channels:
+    - 1
+    - 0
+    layers:
+    - activation_fn: softplus
+      activation_scope: null
+      batch_norm: false
+      bias: true
+      channels: 128
+      layer_norm: true
+      name: conv1
+    - activation_fn: softplus
+      activation_scope: null
+      batch_norm: false
+      bias: true
+      channels: 16
+      layer_norm: true
+      name: conv2
+    - activation_fn: null
+      activation_scope: null
+      batch_norm: false
+      bias: false
+      channels: 1
+      layer_norm: false
+      name: conv3
+  include_previous_x: true
+  include_previous_y: true
+  included_durations: []
+  included_previous_fixations: []
+  readout_factor: 16
+  saliency_map_factor: 2
+  saliency_network:
+    input_channels: 2560
+    layers:
+    - activation_fn: softplus
+      activation_scope: null
+      batch_norm: false
+      bias: true
+      channels: 8
+      layer_norm: true
+      name: conv1
+    - activation_fn: softplus
+      activation_scope: null
+      batch_norm: false
+      bias: true
+      channels: 16
+      layer_norm: true
+      name: conv2
+    - activation_fn: softplus
+      activation_scope: null
+      batch_norm: false
+      bias: true
+      channels: 1
+      layer_norm: true
+      name: conv3
+  scanpath_network: null

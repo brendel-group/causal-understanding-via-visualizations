@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 95%">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MTurk Experiment Task</title>
+
+    <link href="../jspsych/css/jspsych.css" rel="stylesheet" />
+    <script src="../jspsych/jspsych.js"></script>
+    <script src="../jspsych/plugins/jspsych-instructions.js"></script>
+    <script src="../jspsych/plugins/jspsych-fullscreen.js"></script>
+    <script src="../jspsych/plugins/jspsych-call-function.js"></script>
+    <script src="../jspsych/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="../jspsych/plugins/jspsych-survey-text.js"></script>
+
+    <script src="../jspsych-extension/html-button-keyboard-response.js"></script>
+    <script src="../jspsych-extension/jspsych-image-instructions.js"></script>
+    <script src="../jspsych-extension/cf-image-confidence-response.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+
+    <script src="task.js"></script>
+    <script src="../utils.js"></script>
+    <link href="task.css" rel="stylesheet" />
+  </head>
+
+  <body
+    onload="initialize();"
+    style="background-color: #747474; color: white; height: 100%"
+  ></body>
+  <div
+    style="
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      font-family: 'Open Sans', 'Arial', sans-serif;
+      font-size: 18px;
+      line-height: 1.6em;
+    "
+  >
+    <p>Please wait. The experiment is loading.</p>
+  </div>
+</html>

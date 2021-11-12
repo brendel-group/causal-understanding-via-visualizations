@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  bouncer:
+    image: zimmerrol/hae:latest
+    restart: unless-stopped
+    volumes:
+      - /tmp:/tmp
+      - /var/log/bouncer/log.log:/var/log/bouncer/log.log
+      - ~/causal_visualizations/tools/mturk/mturk-bouncer:/mturk-bouncer/
+    entrypoint: "/bin/bash -c 'pip3 install -q uwsgi && cd /mturk-bouncer && python3 bouncer.py && uwsgi -s /tmp/bouncer.sock --manage-script-name --mount /mturk/bouncer=bouncer.py --callable app --chmod-socket=666'"
+  nginx:
+    image: nginx
+    restart: unless-stopped
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./live/certbot/conf:/etc/letsencrypt
+      - ./live/certbot/www:/var/www/certbot
+      - ~/causal_visualizations/mturk:/var/www/mturk
+      - ~/mturk-data/:/var/www/mturk-data
+      - /var/log/nginx/access.log:/var/log/nginx/access.log
+      - /etc/nginx/logs/:/etc/nginx/logs/
+      - /tmp:/tmp
+    ports:
+      - "80:80"
+      - "443:443"
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+  certbot:
+    image: certbot/certbot
+    restart: unless-stopped
+    volumes:
+      - ./live/certbot/conf:/etc/letsencrypt
+      - ./live/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"

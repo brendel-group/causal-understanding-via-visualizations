@@ -1,0 +1,119 @@
+.jspsych-2afc-image-confidence-reference-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 224px);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  justify-content: center;
+  margin: auto;
+}
+
+.jspsych-2afc-image-confidence-container {
+  display: grid;
+  grid-template-columns: 3fr 25px 1fr 25px 3fr;
+  grid-template-rows: 30px 1fr;
+  align-items: center;
+}
+
+.jspsych-2afc-image-confidence-query-choice-container {
+  margin: 20px 0;
+  grid-column: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.jspsych-2afc-image-confidence-choice-grid {
+  display: inline-grid;
+  grid-row-gap: 5px;
+  margin: 5px 0 5px 0;
+  width: 100%;
+  max-width: 224px;
+}
+
+.jspsych-2afc-image-confidence-left-container {
+  grid-column: 1;
+}
+
+.jspsych-2afc-image-confidence-right-container {
+  grid-column: 5;
+}
+
+.jspsych-2afc-image-confidence-left-container
+  .jspsych-2afc-image-confidence-reference-grid {
+  justify-content: right;
+}
+
+.jspsych-2afc-image-confidence-right-container
+  .jspsych-2afc-image-confidence-reference-grid {
+  justify-content: left;
+}
+
+.jspsych-2afc-image-confidence-choice-hint {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  text-align: center;
+  grid-row: 2;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 40px;
+}
+
+.jspsych-2afc-image-confidence-choice-hint > div > p {
+  position: absolute;
+  color: black;
+  width: 100%;
+  margin-top: 7px;
+}
+
+.arrow {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr auto;
+  position: absolute;
+}
+
+.arrow div:nth-child(1) {
+  margin-top: 8px;
+  background: lightgray;
+  height: 25px;
+  float: left;
+}
+.arrow div:nth-child(2) {
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 20px solid lightgray;
+  float: right;
+}
+
+.jspsych-2afc-image-confidence-query {
+  padding: 5px;
+  margin: 0 -10px;
+  background-color: transparent;
+  border: 5px solid rgb(116, 116, 116);
+}
+
+.jspsych-2afc-image-confidence-query-responded {
+  background-color: black;
+}
+
+.jspsych-2afc-image-confidence-query-correct {
+  border: 5px solid green;
+  padding: 5px;
+}
+
+.jspsych-2afc-image-stimulus {
+  width: 100%;
+  /*TODO: make variable */
+  max-width: 224px;
+}
+
+#jspsych-instructions-image {
+  max-width: 1684px;
+  width: 50%;
+  margin: 25px 0;
+  padding: 10px;
+  border: solid black 2px;
+}

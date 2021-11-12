@@ -1,0 +1,7 @@
+natural.json
+optimized.json
+mixed.json
+
+*.png
+
+/data

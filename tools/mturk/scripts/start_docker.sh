@@ -1,0 +1,1 @@
+docker run -it -v ~/causal_visualizations:/cv zimmerrol/hae:latest /bin/bash -c "cd /cv/tools/mturk; /bin/bash"
